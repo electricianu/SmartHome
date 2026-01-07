@@ -1,0 +1,9 @@
+name=SmartHome
+version=1.0.0
+author=Socianu Catalin
+maintainer=Socianu Catalin
+sentence=Modular smart home library for Arduino and ESP32.
+paragraph=Provides sensors, actuators, UI, network and automation modules in a clean, extensible architecture.
+category=Device Control
+url=https://github.com/electricianu/SmartHome
+architectures=*

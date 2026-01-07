@@ -1,0 +1,7 @@
+SmartHomeLib    KEYWORD1
+begin           KEYWORD2
+update          KEYWORD2
+TemperatureSensor KEYWORD1
+Relay           KEYWORD1
+LedUI           KEYWORD1
+Timer           KEYWORD1
