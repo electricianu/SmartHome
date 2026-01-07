@@ -1,0 +1,27 @@
+#include "Light.h"
+
+Light::Light(int pin, bool pwm)
+    : _pin(pin), _pwm(pwm), _level(0) {}
+
+void Light::begin() {
+    pinMode(_pin, OUTPUT);
+    off();
+}
+
+void Light::on() {
+    fadeTo(100);
+}
+
+void Light::off() {
+    fadeTo(0);
+}
+
+void Light::fadeTo(int value) {
+    _level = constrain(value, 0, 100);
+    int pwmValue = map(_level, 0, 100, 0, 255);
+    if (_pwm) {
+        analogWrite(_pin, pwmValue);
+    } else {
+        digitalWrite(_pin, (_level > 0) ? HIGH : LOW);
+    }
+}

@@ -1,0 +1,29 @@
+#include "Sensor.h"
+
+Sensor::Sensor(int pin, SensorType type, const String& name)
+    : _pin(pin), _type(type), _name(name), _lastValue(-9999) {}
+
+void Sensor::begin() {
+    if (_type == SENSOR_DIGITAL) {
+        pinMode(_pin, INPUT);
+    }
+    // analog nu are nevoie de pinMode pe majoritatea platformelor
+}
+
+void Sensor::poll(EventBus& bus) {
+    int value = 0;
+    if (_type == SENSOR_DIGITAL) {
+        value = digitalRead(_pin);
+    } else {
+        value = analogRead(_pin);
+    }
+
+    if (value != _lastValue) {
+        _lastValue = value;
+        Event e;
+        e.type = "sensor." + _name;
+        e.source = _name;
+        e.value = value;
+        bus.emit(e);
+    }
+}

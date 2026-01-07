@@ -1,0 +1,23 @@
+#ifndef LIGHT_H
+#define LIGHT_H
+
+#include <Arduino.h>
+
+class Light {
+public:
+    Light(int pin, bool pwm);
+
+    void begin();
+    void on();
+    void off();
+    void fadeTo(int value); // 0–100%
+
+    int currentLevel() const { return _level; }
+
+private:
+    int _pin;
+    bool _pwm;
+    int _level;
+};
+
+#endif

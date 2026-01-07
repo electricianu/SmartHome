@@ -1,0 +1,26 @@
+#ifndef SENSOR_H
+#define SENSOR_H
+
+#include <Arduino.h>
+#include "core/EventBus.h"
+
+enum SensorType {
+    SENSOR_DIGITAL = 0,
+    SENSOR_ANALOG  = 1
+};
+
+class Sensor {
+public:
+    Sensor(int pin, SensorType type, const String& name);
+
+    void begin();
+    void poll(EventBus& bus); // chemat în loop
+
+private:
+    int _pin;
+    SensorType _type;
+    String _name;
+    int _lastValue;
+};
+
+#endif
